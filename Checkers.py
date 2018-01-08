@@ -1,5 +1,6 @@
+##Adding some additional informaiton
 BOARD_SIZE = 8
-BLANK = '.'
+BLANK = '-'
 NAUGHT = 'O'
 CROSS = 'X'
 INVALID_MOVE = 'INVALID MOVE'
@@ -26,8 +27,7 @@ def movePiece(curPos, proPos):
         elif playerPerspective == -1:
             BOARD[proPos[0]][proPos[1]] = CROSS
 
-    elif if ((curPos[0] - proPos[0]) == 2 or (curPos[0] - proPos[0]) == - 2) and (curPos[1] - proPos[1]) == 2 * playerPerspective \
-                             and (BOARD[proPos[0] - 1][proPos[1] - 1] == BLANK):
+    elif ((curPos[0] - proPos[0]) == 2 or (curPos[0] - proPos[0]) == - 2) and (curPos[1] - proPos[1]) == -2 * playerPerspective:
         BOARD[curPos[0]][curPos[1]] = BLANK
         if playerPerspective == 1:
             BOARD[proPos[0]][proPos[1]] = NAUGHT
@@ -51,8 +51,9 @@ BOARD[4][4] = NAUGHT
 BOARD[3][5] = CROSS
 
 printBoard()
-    
+
 ##movePiece((3,5),(4,6))
 ##movePiece((4,4),(3,3))
+movePiece((4,4),(2,6))
 
 printBoard()
