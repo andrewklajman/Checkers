@@ -18,14 +18,18 @@ def currentPositions(player):
 
 def possibleMoves(currentPosition):
     tmp = []
-    if currentPosition[0] - 1 != -1:
-        if currentPosition[1] + 1 != BOARD_SIZE:
-            if BOARD[currentPosition[0] - 1][currentPosition[1] + 1] == BLANK:
-                tmp.append((currentPosition[0] - 1, currentPosition[1] + 1))
-    if currentPosition[0] - 1 != -1:
-        if currentPosition[1] - 1 != -1:
-            if BOARD[currentPosition[0] - 1][currentPosition[1] - 1] == BLANK:
-                tmp.append((currentPosition[0] - 1, currentPosition[1] - 1))
+
+    if 0 <= currentPosition[0] < BOARD_SIZE and 0 <= currentPosition[1] < BOARD_SIZE - 1:
+        if BOARD[currentPosition[0] - 1][currentPosition[1] + 1] == BLANK:
+            tmp.append ((currentPosition[0] - 1,currentPosition[1] + 1))
+    if 0 <= currentPosition[0] < BOARD_SIZE and 0 < currentPosition[1] <= BOARD_SIZE - 1:
+        if BOARD[currentPosition[0] - 1][currentPosition[1] - 1] == BLANK:
+            tmp.append ((currentPosition[0] - 1,currentPosition[1] - 1))
+
+    if 0 <= currentPosition[0] < BOARD_SIZE - 1 and 0 <= currentPosition[1] < BOARD_SIZE - 2:
+        if BOARD[currentPosition[0] - 1][currentPosition[1] + 1] == opposingPlayer() and BOARD[currentPosition[0] - 2][currentPosition[1] + 2] == BLANK:
+            tmp.append ((currentPosition[0] - 1,currentPosition[1] + 1))
+        
     return tmp
                 
 
@@ -34,8 +38,8 @@ def possibleMoves(currentPosition):
 
     
 BOARD = initBoard()
-BOARD[4][4] = NAUGHT
-BOARD[4][6] = NAUGHT
+BOARD[5][4] = NAUGHT
+BOARD[4][2] = NAUGHT
 BOARD[4][7] = NAUGHT
 BOARD[3][5] = CROSS
 BOARD[3][3] = CROSS
@@ -44,7 +48,7 @@ print()
 
 
 
-print(possibleMoves((4,4)))
+print(possibleMoves((4,2)))
 
 
 
